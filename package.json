@@ -1,0 +1,14 @@
+{
+  "name": "recon-guardian",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reconciliation Guardian — an agent that holds money against the agreement, line-matches the seller invoice against the mandate, and releases only the verified amount. (PayPal AI Hackathon 2026)",
+  "scripts": {
+    "token": "node src/paypal-rest/token-check.mjs",
+    "demo:authorize": "node scripts/demo-authorize.mjs",
+    "demo:local": "node scripts/demo-local.mjs",
+    "test": "node --test \"tests/**/*.test.mjs\""
+  },
+  "engines": { "node": ">=20" }
+}

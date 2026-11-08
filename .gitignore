@@ -1,0 +1,13 @@
+.env
+node_modules/
+# Language caches — never ship bytecode (Hermes review lesson, 2026-11-08:
+# a committed __pycache__ was the first thing the maintainer flagged).
+__pycache__/
+*.pyc
+# Credential probe scripts from the 2026-11-07 vault diagnosis — local only,
+# never part of the product repo (they read connector credentials).
+token_test*.py
+parse_check.py
+surrogate_probe2.py
+# The user's own-phone credential self-test — local only.
+termux_token_test.py
