@@ -56,6 +56,8 @@ function newSession() {
     blocked: null, // { invoice, outcome }
     repaired: null, // outcome
     repairToken: null,
+    repairSeq: 0, // counts repair ATTEMPTS — every repaired invoice is a new
+    // document and needs a fresh id, or the duplicate guard blocks the fix
   };
   sessions.set(session.id, session);
   return session;
@@ -253,7 +255,7 @@ const server = createServer(async (req, res) => {
         const cents = raw == null || raw === '' ? l.unitPriceCents : toCents(raw);
         return { name: l.name, quantity: l.quantity, unitPriceCents: cents };
       });
-      const n = 1043 + session.guardian.receipts.length;
+      const n = 1043 + session.repairSeq++;
       const repair = { id: `INV-SARI-${n}`, number: String(n), lines };
       const outcome = await session.guardian.repairAndReprocess(session.mandate, entry.invoice, repair);
       if (outcome.verdict === 'MATCH') {
